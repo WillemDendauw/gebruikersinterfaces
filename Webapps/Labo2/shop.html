@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>blog</title>
+    <script src="scripts/ShopMain.js" type="module"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <nav>
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="shop.html">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Administration</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="page-header">
+                <h1 class="pt-4">A blog about Lorem Ipsum
+                    <small class="text-secondary">by Sam Leroux</small>
+                </h1>
+                <hr/>
+            </div>
+        </div>
+    </div>
+    <!--<form onsubmit="voerTestUitVoorSubmit();" method="POST" action="mailto:leen.brouns@ugent.be">-->
+    <!--<form onsubmit="return voerTestUitVoorSubmit();" id="idForm" method="POST" action="mailto:leen.brouns@ugent.be">-->
+    <form id="idForm" method="POST" action="mailto:leen.brouns@ugent.be">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        uw gegevens
+                    </div>
+                    <div class="card-body">
+                        <div class="card-text">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div id="idInputGroupGegevens" class="input-group input-group-sm mb-3">
+                                        <div class="input-group input-group-sm mb-3">
+                                            <!--<label for="idNaam">naam</label>-->
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">naam</span>
+                                            </div>
+                                            <input class="form-control" type="text" id="idNaam">
+                                        </div>
+                                        <div class="input-group input-group-sm mb-3">
+                                            <!--<label for="idPostcode">postcode</label>-->
+                                            <!-- als je dit schrijft, staat alles wat groter dan bij 'naam':
+                                                <div class="input-group-prepend input-group-text">
+                                                    postcode
+                                                </div>-->
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">postcode</span>
+                                            </div>
+                                            <input class="form-control" type="text" id="idPostcode">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-4">
+                    <div class="card-header">
+                        te bestellen
+                    </div>
+                    <div class="card-body">
+                        <div class="card-text">
+                            <div class="form-group form-check">
+                                <input type="checkbox" class="form-check-input" name="elektronisch" id="idElektronisch">
+                                <label class="form-check-label" for="idElektronisch" id="textElektronisch">
+                                    volledige tekst van 'Lorem Ipsum' toegestuurd per mail (€ 0.50) </label>
+                            </div>
+                            <div class="form-group form-check">
+                                <input type="checkbox" class="form-check-input" name="zeefdruk" id="idZeefdruk">
+                                <label class="form-check-label" for="idZeefdruk" id="textZeefdruk">
+                                    volledige tekst, zeefdruk op handgeschept papier (€ 10.00) </label>
+                            </div>
+                            <div class="form-inline">
+                                <div class="form-group form-check">
+                                    <input type="checkbox" class="form-check-input" name="ingekaderd" id="idIngekaderd">
+                                    <label class="form-check-label ml-2" for="idIngekaderd" id="textIngekaderd">
+                                        volledige tekst, zeefdruk op handgeschept papier, ingekaderd (€
+                                        40.00);
+                                    </label>
+                                    <div class="form-group">
+                                        <label class="ml-4" for="idkleurkader">
+                                            kleur kader
+                                        </label>
+                                        <select class="form-control ml-2" name="kleurkader" id="idkleurkader">
+                                            <option value="wit">wit</option>
+                                            <option value="grijs">grijs</option>
+                                            <option value="houtskleur">houtskleur</option>
+                                            <option value="zwart">zwart</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!-- einde card-text -->
+                    </div>
+                    <div class="card-footer">
+                        <input class="btn btn-primary" type="button" value="voeg toe aan winkelkar"
+                               id="idVoegToeAanWinkelkar">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+
+                <div class="card mb-3">
+                    <div class="card-header">
+                        winkelkar
+                    </div>
+                    <div class="card-body">
+                        <div class="card-text">
+                            <div class="form-group">
+                            <textarea class="form-control" id="idTextArea" rows="10">voorlopig nog niets besteld
+                            </textarea>
+                            </div>
+                            <p>
+                                betaling per
+                            </p>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="betalingswijze" id="idOverschrijving"
+                                       value="overschrijving" checked>
+                                <label class="form-check-label" for="idOverschrijving">overschrijving</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="betalingswijze" id="idBetaalkaart"
+                                       value="betaalkaart">
+                                <label class="form-check-label" for="idBetaalkaart">betaalkaart</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <!-- als je voor de eerste button type="reset" zou kiezen, zal ook de naam en postcode
+                         leeggemaakt worden; dat wil je niet. Later zal er met JavaScript een actie aan deze button gehangen worden. -->
+                        <button type="button" class="btn btn-primary" id="idMaakLeeg">Maak leeg</button>
+                        <button type="submit" class="btn btn-primary" id="idBestel">Bestel</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<!--<script>go();</script>-->
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+</html>

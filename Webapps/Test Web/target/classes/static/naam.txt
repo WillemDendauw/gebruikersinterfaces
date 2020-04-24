@@ -1,0 +1,15 @@
+VOORNAAM:    Willem
+FAMILIENAAM: Dendauw
+
+STATUS (vul hieronder aan wat van toepassing is):
+werkt met enkele bugs: bv soms draaid hij de 2 de kaart niet terug om bij het indrukken
+van de verberg toets, soms ook wel, vooral gaat het mis bij de eerste zetten.
+ook de update van de server geeft errors waar ik geen wijs uit geraak.
+
+volledig afgewerkt tot en met paragraaf (bvb 1.6): ...
+bezig aan paragraaf (bvb 2.2): ...
+bezig aan 2.3 en tot daar ook afgewerkt op de enkele bugs na
+
+ANDERE OPMERKINGEN ivm geschreven code:
+
+veel console logs die voor te testen zijn, geen commentaar in de plaats wel, wegens tijdsgebrek

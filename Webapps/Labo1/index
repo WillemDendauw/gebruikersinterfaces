@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>een blog</title>
+</head>
+<body>
+<div class="container">
+    <nav>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="shop.html">Shop</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Administration</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="page-header row">
+        <h1 class="pt-4">A blog about Lorem Ipsum
+            <small class="text-secondary">by Sam Leroux</small>
+        </h1>
+        <hr/>
+    </div>
+    <div class="row">
+        <main class="col-sm-9">
+            <div class="card row mb-3">
+                <div class="card-header">
+                    What is Lorem Ipsum?
+                </div>
+                <div class="card-body">
+                    <p class="card-text"> Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
+                        printer took a galley of type and scrambled it to make a type specimen book. It has survived not
+                        only five centuries, but also the leap into electronic typesetting, remaining essentially
+                        unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem
+                        Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker
+                        including versions of Lorem Ipsum.</p>
+
+                    <a href="#" class="btn btn-primary">Lees meer</a>
+                </div>
+            </div>
+
+            <div class="card row mb-3">
+
+                <div class="card-header">
+                    Where does it come from?
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots
+                        in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard
+                        McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more
+                        obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the
+                        word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections
+                        1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by
+                        Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during
+                        the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a
+                        line in section 1.10.32.</p>
+                    <a href="#" class="btn btn-primary">Lees meer</a>
+
+                </div>
+
+            </div>
+
+            <div class="card row mb-3">
+                <div class="card-header">
+                    Why do we use it?
+                </div>
+                <div class="card-body">
+                    <p class="card-text">It is a long established fact that a reader will be distracted by the readable
+                        content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a
+                        more-or-less normal distribution of letters, as opposed to using 'Content here, content here',
+                        making it look like readable English. Many desktop publishing packages and web page editors now
+                        use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many
+                        web sites still in their infancy. Various versions have evolved over the years, sometimes by
+                        accident, sometimes on purpose (injected humour and the like).
+                    </p>
+                    <a href="#" class="btn btn-primary">Lees meer</a>
+                </div>
+            </div>
+
+            <div class="card row mb-3">
+                <div class="card-header">
+                    Where can I get some?
+                </div>
+                <div class="card-body">
+                    <p class="card-text">There are many variations of passages of Lorem Ipsum available, but the
+                        majority have suffered alteration in some form, by injected humour, or randomised words which
+                        don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need
+                        to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum
+                        generators on the Internet tend to repeat predefined chunks as necessary, making this the first
+                        true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a
+                        handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The
+                        generated Lorem Ipsum is therefore always free from repetition, injected humour, or
+                        non-characteristic words etc.</p>
+                    <a href="#" class="btn btn-primary">Lees meer</a>
+                </div>
+
+
+            </div>
+        </main>
+
+        <aside class="col-sm-3">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Search</h5>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for..." aria-label="Search for...">
+
+                        <button class="btn btn-secondary" type="button">Go!</button>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h5>Popular Categories</h5>
+                    <ul>
+                        <li><a href="#">Lorem</a></li>
+                        <li><a href="#">Ipsum</a></li>
+                        <li><a href="#">Text</a></li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+#canvas {
+    border: 1px solid black;
+    position: absolute;
+    top: 10%;
+    left: 10%;
+}
+
+#background {
+    position: absolute;
+    width: 700px;
+    height: 600px;
+    top: 10%;
+    left: 10%;
+}
+
+#tb1_resultaten{
+    position: absolute;
+    left: 900px;
+    top: 10px;
+}
