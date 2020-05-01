@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+        <string name="app_name">Quiznl</string>
+        <string name="ok_button_text">OKnl</string>
+        <string name="hint_button_text">HINTnl</string>
+        <string name="edittext_text">Namenl</string>
+        <string name="question_placeholder">this is a placeholder questionnl</string>
+
+</resources>
