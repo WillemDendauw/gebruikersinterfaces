@@ -20,10 +20,11 @@
         <TextView
             android:id="@+id/question_textview"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:textSize="32sp"
-            android:text="@{quizMaster.currentQuestion.question}" />
+            android:text="@{quizMaster.currentQuestion.question}"
+            tools:text="question placeholder"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -32,24 +33,30 @@
 
             <EditText
                 android:id="@+id/answer_edit_text"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:ems="10"
+                android:importantForAutofill="no"
                 android:inputType="textPersonName"
-                android:hint="@string/edittext_text" />
+                android:text="@={quizMaster.userAnswer}"
+                tools:ignore="LabelFor,NestedWeights" />
 
             <Button
                 android:id="@+id/ok_button"
-                android:layout_width="wrap_content"
+                android:layout_width="75dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:onClick="@{() -> handler.onOkClick()}"
                 android:text="@string/ok_button_text" />
 
             <Button
                 android:id="@+id/hint_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="0"
                 android:text="@string/hint_button_text"
-                android:onClick="@{() -> handler.onHintClick()}"/>
+                android:onClick="@{handler::onHintClick}"/>
 
         </LinearLayout>
 

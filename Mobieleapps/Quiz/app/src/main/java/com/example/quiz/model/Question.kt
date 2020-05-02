@@ -4,7 +4,7 @@ class Question(
     val question: String,
     val answer: String,
     val textHint: String,
-    val imageURIHint: String
+    val imageUriHint: String
 ) {
     companion object QuestionIdCounter {
         private var count: Int = 0

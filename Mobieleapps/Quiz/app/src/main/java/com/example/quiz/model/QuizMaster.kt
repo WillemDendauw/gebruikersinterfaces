@@ -1,10 +1,12 @@
 package com.example.quiz.model
+import androidx.databinding.ObservableField
 import com.example.quiz.model.Question
 
 object QuizMaster {
     private val questionRepository: HashMap<Int, Question> = HashMap()
     private var iterator: Iterator<Question>
-    lateinit var currentQuestion: Question
+    lateinit var currentQuestion: ObservableField<Question>
+    val userAnswer = ObservableField<String>()
 
     init {
         loadQuestions()
@@ -12,15 +14,15 @@ object QuizMaster {
         nextQuestion()
     }
 
-    fun validateAnswer(q: Question, answer: String): Boolean {
-	    return q.answer == answer
+    fun validateAnswer(): Boolean {
+	    return currentQuestion.get()?.answer == userAnswer.get()
     }
 
     fun nextQuestion() {
         if (!iterator.hasNext()) {
             iterator = questionRepository.values.iterator()
         }
-        currentQuestion = iterator.next()
+        currentQuestion.set(iterator.next())
     }
 
     private fun loadQuestions() {
