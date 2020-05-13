@@ -1,0 +1,2 @@
+rootProject.name='TrafficFeed'
+include ':app'

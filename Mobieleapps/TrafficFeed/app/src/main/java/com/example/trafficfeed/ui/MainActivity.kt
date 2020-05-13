@@ -1,25 +1,25 @@
-package com.example.livedata
+package com.example.trafficfeed.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.CountDownTimer
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
-import androidx.databinding.ObservableField
-import androidx.databinding.ObservableInt
-import com.example.livedata.databinding.ActivityMainBinding
-import com.example.livedata.model.QuoteDAO
+import androidx.lifecycle.Observer
+import com.example.trafficfeed.R
+import com.example.trafficfeed.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-
-    val viewModel by viewModels<MainViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val vm: TrafficViewModel by viewModels()
         val binding: ActivityMainBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_main)
-        binding.viewmodel = viewModel
+
+        binding.viewmodel = vm
         binding.lifecycleOwner = this
+
+        vm.notificationCount.observe(this, Observer {  })
     }
 }

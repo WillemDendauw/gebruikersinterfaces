@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.example.trafficfeed.ui.TrafficViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".view.ui.MainActivity">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textAppearance="@android:style/TextAppearance.Large"
+            tools:text="Title placeholder"
+            android:text="@{viewmodel.selectedNotification.name}"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="2"
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_gravity="end"
+                    android:minHeight="25dp"
+                    android:paddingStart="0dp"
+                    android:paddingTop="5dp"
+                    android:paddingEnd="16dp"
+                    android:paddingBottom="5dp"
+                    android:text="@string/id"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_columnWeight="1"
+                    android:minHeight="25dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:textAllCaps="false"
+                    android:text="@{viewmodel.selectedNotification.id}"/>
+
+                <TextView
+                    android:layout_gravity="end"
+                    android:minHeight="25dp"
+                    android:paddingStart="0dp"
+                    android:paddingTop="5dp"
+                    android:paddingEnd="16dp"
+                    android:paddingBottom="5dp"
+                    android:text="@string/source"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_columnWeight="1"
+                    android:minHeight="25dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:text="@{viewmodel.selectedNotification.source}"
+                    android:textAllCaps="false" />
+
+                <TextView
+                    android:layout_gravity="end"
+                    android:minHeight="25dp"
+                    android:paddingStart="0dp"
+                    android:paddingTop="5dp"
+                    android:paddingEnd="16dp"
+                    android:paddingBottom="5dp"
+                    android:text="@string/type"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_columnWeight="1"
+                    android:minHeight="25dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:text="@{viewmodel.selectedNotification.type}"
+                    android:textAllCaps="false" />
+
+                <TextView
+                    android:layout_gravity="end"
+                    android:minHeight="25dp"
+                    android:paddingStart="0dp"
+                    android:paddingTop="5dp"
+                    android:paddingEnd="16dp"
+                    android:paddingBottom="5dp"
+                    android:text="@string/transport"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_columnWeight="1"
+                    android:minHeight="25dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:text="@{viewmodel.selectedNotification.transport}"
+                    android:textAllCaps="false" />
+
+                <TextView
+                    android:layout_gravity="end"
+                    android:minHeight="25dp"
+                    android:paddingStart="0dp"
+                    android:paddingTop="5dp"
+                    android:paddingEnd="16dp"
+                    android:paddingBottom="5dp"
+                    android:text="@string/message"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_columnWeight="1"
+                    android:minHeight="25dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:text="@{viewmodel.selectedNotification.message}"
+                    android:textAllCaps="false" />
+
+                <TextView
+                    android:layout_gravity="end"
+                    android:minHeight="25dp"
+                    android:paddingStart="0dp"
+                    android:paddingTop="5dp"
+                    android:paddingEnd="16dp"
+                    android:paddingBottom="5dp"
+                    android:text="@string/longitude"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_columnWeight="1"
+                    android:minHeight="25dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:text="@{Double.toString(viewmodel.selectedNotification.longitude)}"
+                    android:textAllCaps="false" />
+
+                <TextView
+                    android:layout_gravity="end"
+                    android:minHeight="25dp"
+                    android:paddingStart="0dp"
+                    android:paddingTop="5dp"
+                    android:paddingEnd="16dp"
+                    android:paddingBottom="5dp"
+                    android:text="@string/latitude"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_columnWeight="1"
+                    android:minHeight="25dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:text="@{Double.toString(viewmodel.selectedNotification.latitude)}"
+                    android:textAllCaps="false" />
+
+                <TextView
+                    android:layout_gravity="end"
+                    android:minHeight="25dp"
+                    android:paddingStart="0dp"
+                    android:paddingTop="5dp"
+                    android:paddingEnd="16dp"
+                    android:paddingBottom="5dp"
+                    android:text="@string/timestamp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_columnWeight="1"
+                    android:minHeight="25dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:text="@{viewmodel.selectedNotification.date}"
+                    android:textAllCaps="false" />
+            </GridLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="@{() -> viewmodel.previous()}"
+                android:text="@string/previous" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="@{() -> viewmodel.next()}"
+                android:text="@string/next" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>
