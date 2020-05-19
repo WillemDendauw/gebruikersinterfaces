@@ -11,12 +11,10 @@ import com.example.livedata.databinding.ActivityMainBinding
 import com.example.livedata.model.QuoteDAO
 
 class MainActivity : AppCompatActivity() {
-
-    val viewModel by viewModels<MainViewModel>()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val viewModel: MainViewModel by viewModels()
         val binding: ActivityMainBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.viewmodel = viewModel
