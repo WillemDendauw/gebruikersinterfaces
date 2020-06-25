@@ -1,123 +1,66 @@
-class Product{
-    constructor(naam, prijs, aantal){
-        this.naam = naam;
-        this.prijs = prijs;
-        this.aantal = aantal;
-    }
+import Winkelkar from "./modules/Winkelkar.js"
 
-    koop(){
-        this.aantal++;
+function cijfersom(getal){
+    let som = 0;
+    while(getal != 0){
+         som += getal % 10;
+         getal = Math.floor(getal/10);
     }
-
-    totaalPrijs(){
-        return this.aantal * this.prijs;
-    }
-
-    informatie(){
-        return this.naam;
-    }
+    return som;
 }
 
-class Winkelkar {
-    constructor() {
-        this.map = new Map();
-        this.map.set("tekst per mail",new Product("tekst per mail", 0.5,0));
-        this.map.set("zeefdruk op papier",new Product("zeefdruk op papier", 10,0));
-        this.map.set("zeefdruk op papier, ingekaderd",new Product("zeefdruk op papier, ingekaderd", 40,0));
+function controleerCode(codeIn) {
+    let code = codeIn.replace(/\s/g, "");
+
+    //de code (string) opsplitsen in aparte letters en toevoegen aan ee narray
+    let codeInArray = [...code];
+
+    //controleren of er alleen digits staan
+    let allesDigits = codeInArray.every(c => "0123456789".includes(c));
+    if (allesDigits === false) {
+        return false;
     }
 
-    koop(naam){
-        let product = this.map.get(naam);
-        product.koop();
-        console.log("product ("+naam+") gekocht");
+    //om de twee indices de cijfers met twee vermenigvuldigen ( en desgewenst cijfersom nemen);
+    //keis die indices waarbij het voorlaatste cijfer zit
+    //merk op: de functie cijfersom zorgt zelf voor interpretatie als int
+    for (let i = codeInArray.length - 2; i>=0 ; i-=2){
+        codeInArray[i]=cijfersom(2*codeInArray[i]);
     }
 
-    BerekenTotaal(){
-        let prijs = 0;
-        for(let value of this.map.values()){
-            prijs += value.prijs;
-        }
-        console.log("totaalprijs berekend: "+prijs);
-        return prijs;
-    }
+    //probleem: zijn de elementen nu eigenlijk getallen of strings ?!
+    // als we onderstaande omzetting niet doen, zal het accumuleren van de elementen van de array
+    //neerkomen op het samenplakken van strings - dat willen we niet
+    let getallenInArray = codeInArray.map(x => parseInt(x));
 
-    geefInformatie(){
-        let tekst = "";
-        for(let keys of this.map.keys()){
-            let product = this.map.get(keys);
-            if(product.aantal != 0){
-                tekst += product.aantal + "x " + keys +"\n";
-            }
-        }
-        tekst += "\nTotaal: " + this.BerekenTotaal()
-        console.log(tekst);
-        return tekst;
-    }
+    //alle getallen optellen, moet tienvoud zijn
+    let som = getallenInArray.reduce((accumulator, item) => accumulator + item);
 
-    resetWinkelkar(){
-        for(let value of this.map.values()){
-            value.aantal = 0;
-        }
-        let textarea = document.getElementById("idTextArea");
-        textarea.value = "voorlopig nog niet besteld";
-        console.log("winkelkar gereset");
-    }
-}
-
-let winkelkar = new Winkelkar();
-
-function go(){
-    console.log("go!");
-    let knop = document.getElementById("idVoegToeAanWinkelkar");
-    knop.onclick = voegToeAanWinkelkar;
-    let reset = document.getElementById("idMaakLeeg");
-    reset.onclick = maakWinkelkarLeeg;
-    document.getElementById("idForm").onsubmit = voerTestUitVoorSubmit;
-
-    let zeef = document.getElementById("idZeefdruk");
-
-    let kader = document.getElementById("idIngekaderd");
-    zeef.onclick = voegVeldToe;
-    kader.onclick = voegVeldToe;
-//geen haakjes na voegToeAanWinkelkar want het is gewoon de naam van de functie en niet de functieoproep
-
-}
-
-function voegVeldToe(){
-    console.log("veld toevoegen");
-    let ouder = document.getElementById("idInputGroupGegevens");
-    let kind1 = document.createElement("adres");
-    //kind1.setAttribute("class","form-control");
-    kind1.setAttribute("type","text");
-    let kind2 = document.createElement("adres2");
-    kind2.setAttribute("value","adres");
-    ouder.appendChild(kind2);
-    ouder.appendChild(kind1);
+    return som % 10 === 0;
 }
 
 function voegToeAanWinkelkar(){
-    let textarea = document.getElementById("idTextArea");
     if(document.getElementById("idElektronisch").checked){
-        winkelkar.koop("tekst per mail");
+        mijnWinkelkar.koop("tekst per mail");
     }
     if(document.getElementById("idZeefdruk").checked){
-        winkelkar.koop("zeefdruk op papier")
+        mijnWinkelkar.koop("zeefdruk op papier");
     }
     if(document.getElementById("idIngekaderd").checked){
-        winkelkar.koop("zeefdruk op papier, ingekaderd");
+        mijnWinkelkar.koop("zeefdruk op papier, ingekaderd");
     }
-    console.log("winkelkargeupdate");
-    textarea.value = winkelkar.geefInformatie();
+    document.getElementById("idTextArea").textContent = mijnWinkelkar.toString();
 }
 
 function maakWinkelkarLeeg(){
-    winkelkar.resetWinkelkar();
+    mijnWinkelkar.maakLeeg();
+    document.getElementById("idTextArea").textContent = "geen aankopen";
 }
 
 function voerTestUitVoorSubmit() {
     if (document.getElementById("idBetaalkaart").checked) {
         let betaalkaartCode = prompt("Geef de code van uw betaalkaart in", "xxxx xxxx xxxx xxxx");
-        if (betaalkaartCode === null || !controleerCode(betaalkaartCode)) {
+        if (!controleerCode(betaalkaartCode)) {
             alert("Deze code was niet juist; probeer opnieuw");
             return false;
         } else {
@@ -127,43 +70,61 @@ function voerTestUitVoorSubmit() {
     }
 }
 
-function cijfersom(getal) {
-    let som = 0;
-    while (getal != 0) {
-        som += getal % 10;
-        getal = Math.floor(getal / 10);
+function toonMeerGegevens(){
+    //eerst nagaan of het nieuwe element er al staat of niet
+    let elt = document.getElementById("idNieuwElement");
+    if(elt === null){
+        console.log("ik toon meer");
+        let hoofdelt = document.getElementById("idInputGroupGegevens");
+        let nieuwelt = document.createElement("div");
+        nieuwelt.setAttribute("class","input-group input-group-sm mb-3");
+        nieuwelt.setAttribute("id","idNieuwElement");
+
+        let div2 = document.createElement("div");
+        div2.setAttribute("class","input-group-prepend");
+
+        let span = document.createElement("span");
+        span.setAttribute("class","input-group-text");
+        span.textContent = "straat en nr";
+
+        let input = document.createElement("input");
+        input.setAttribute("class","form-control");
+        input.setAttribute("type","text");
+        input.setAttribute("id","idStraat");
+
+        nieuwelt.appendChild(div2);
+        div2.appendChild(span);
+        nieuwelt.appendChild(input);
+
+        hoofdelt.appendChild(nieuwelt);
     }
-    return som;
 }
 
-function controleerCode(codeIn) {
-    let code = codeIn.replace(/\s/g, "");
-
-    // de code (string) opsplitsen in aparte letters en toevoegen aan een array
-    let codeInArray = [...code];
-
-    // controleren of er alleen digits staan
-    let allesDigits = codeInArray.every(c => "0123456789".includes(c));
-    if (allesDigits === false) {
-        return false;
+function toonMinderGegevens(){
+    let elt = document.getElementById("idNieuwElement");
+    if(elt != null){
+        elt.remove();
     }
+}
 
-    // om de twee indices de cijfers met twee vermenigvuldigen (en desgewenst cijfersom nemen);
-    // kies die indices waarbij het voorlaatste cijfer zit
-    // merk op: de functie 'cijfersom' zorgt zelf voor interpretatie als int
-    for (let i = codeInArray.length - 2; i >= 0; i -= 2) {
-        codeInArray[i] = cijfersom(2 * codeInArray[i]);
+function controleerMeerGegevens(){
+    if(document.getElementById("idIngekaderd").checked || document.getElementById("idZeefdruk").checked){
+        toonMeerGegevens();
     }
+    else {
+        toonMinderGegevens();
+    }
+}
 
-    // probleem: zijn de elementen nu eigenlijk getallen of strings?!
-    // als we onderstaande omzetting niet doen, zal het accumuleren van de elementen van de array
-    // neerkomen op het samenplakken van strings - dat willen we niet
-    let getallenInArray = codeInArray.map(x => parseInt(x));
+let mijnWinkelkar = new Winkelkar();
 
-    // alle getallen optellen, moet tienvoud zijn
-    let som = getallenInArray.reduce((accumulator, item) => accumulator + item);
-
-    return som % 10 === 0;
+function go(){
+    alert("script gevonden!");
+    document.getElementById("idVoegToeAanWinkelkar").onclick = voegToeAanWinkelkar;
+    document.getElementById("idMaakLeeg").onclick = maakWinkelkarLeeg;
+    document.getElementById("idForm").onsubmit = voerTestUitVoorSubmit;
+    document.getElementById("idIngekaderd").onclick = controleerMeerGegevens;
+    document.getElementById("idZeefdruk").onclick = controleerMeerGegevens;
 }
 
 go();
