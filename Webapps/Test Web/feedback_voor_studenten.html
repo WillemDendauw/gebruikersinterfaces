@@ -1,0 +1,93 @@
+Beste studenten,
+
+mogen we jullie om te beginnen danken voor het vlotte verloop van de test eind maart? Jullie hebben dat er goed vanaf gebracht, in de nieuwe setting.
+Voor zij die wat minder tevreden waren over hun punten, volgen hier wat tips. 
+Een volledige oplossing wordt niet verspreid - het staat jullie uiteraard wel vrij om zelf nog op het gemak verder uit te proberen:
+je hebt de opgave en het (start)project, dat is een primeur!
+
+<ul>
+<li>Over het algemeen hebben we goed uitgebalanceerde code gezien: op tijd en stond hulpfuncties ingeschakeld om lange (laat staan duplicated) code te vermijden.
+</li>
+<li>Veel studenten hebben de oplossing ook vrij 'smooth' gehouden: geen overbodige variabelen die bijhouden hoeveel en welke kaarten er open liggen. 
+Je kan het in principe doen met de tip die gegeven was:
+<pre>let eerste_kaart = null;
+let tweede_kaart = null;
+</pre>
+Houd in elk van deze variabelen het DOM-element met tagname <code>img</code> bij (of null). Test op null om te weten of en hoeveel kaarten er open liggen. 
+En als de variabele niet null is, dan heb je meteen het hele DOM-element, dus alle nodige informatie om de beeltenis te veranderen.
+Bij sommigen (&oacute;&oacute;k bij studenten die zeer hoog scoorden) vond ik echter meer variabelen en nodeloos ingewikkelde code. 
+Dit is absoluut niet nodig, en zie ik graag volgende keer properder!
+</li>
+<li>
+Bij sommige opdrachten waren er verschillende manieren om het beoogde effect te bekomen. Als er in de opgave echter aangegeven staat welke richting je moet uitgaan, dan houd je je daar best ook aan.
+Concreet: als er staat <i>haal de klasse <code>onzichtbaar</code> uit de <code>classList</code></i>, dan verwacht ik ook ergens het woord <code>classList</code> in je code.
+Dat werd niet gezien in de theorie of de labo's, maar het was dan ook een open-boektest (lees: open internet). 
+</li>
+<li>
+Ook bij het tekenen van het canvas, met <i>daarop een image en daarop een tekst</i>, werden er alternatieven geschreven. Die alternatieven omzeilden (al dan niet gewild) 
+de moeilijkheid dat een Image niet kan getekend worden als ze niet eerst deftig geladen is. Hier een stukje van de oplossing, waarbij vooral de <code>onload</code> belangrijk is 
+(en het feit dat je ook de tekst pas weergeeft als de afbeelding getekend werd, dus IN de anonieme functie):
+<pre>
+    let canvasElt = document.createElement("canvas");
+    canvasElt.width = 430;
+    canvasElt.height = 430;
+    let context = canvasElt.getContext("2d");
+    let image = new Image();
+    image.src = "images/hoera.png";
+    image.onload = function () {
+        context.drawImage(image, 0, 0, 430, 430);
+        context.font = "24px Verdana";
+        let aantal = aantal_pogingen / 2 - 8;
+        context.strokeText("u opende " + aantal + " sets tevergeefs", 20, 170);
+    }
+</pre>
+</li>
+<li>
+Een image teken je niet vooraleer ze geladen is. Data die je ophaalt vanop de server of vanuit een json-bestand verwerk je ook niet voor ze effectief opgehaald is. 
+Dus wie deze code schreef:
+<pre>
+let opgehaalde_nummers;
+
+fetch("tiles0.json")
+    .then(data => data.json())
+    .then(data => {
+        opgehaalde_nummers = data;
+    });
+
+//(*) doe hier iets met opgehaalde_nummers	
+</pre>
+en dan onder die code vrolijk aan de kantlijn <code>(*)</code> begint met het gebruiken van de variabele <code>opgehaalde_nummers</code>, is eraan voor de moeite. 
+Die variabele is op dat moment nog undefined.
+</li>
+<li>
+Veel studenten hebben zichzelf (of hun code) in bochten gewrongen om ervoor te zorgen dat het klik-event bij de juiste memory-afbeelding effect had. 
+Een eerste struikelblok: als je de 16 afbeeldingen een <code>id</code> geeft gebaseerd op hun afbeeldingsnummer (uit het json-bestand), dan heb je twee afbeeldingen met
+hetzelfde id. Geen goed idee! Er is wel degelijk een groot verschil tussen de twee volgende regels code:
+<pre>
+img.setAttribute("id",nummer_uit_json_bestand)
+img.setAttribute("data-id",nummer_uit_json_bestand)
+</pre>
+Wat je wel kon doen, is een <code>id</code> toekennen op basis van kolom- en rijnummer. Maar daar is de ene formule ook al meer verdedigbaar dan de andere. 
+Trek zelf uw besluiten (denk aan correctheid, uitbreidbaarheid, leesbaarheid,...):
+<pre>
+""+rijnr+kolomnr
+""+rijnr+"_"+kolomnr
+4 * rijnr + kolomnr
+rijnr + kolomnr
+</pre>
+Je zou er dan voor kunnen kiezen om dit <code>id</code> op te slaan in de globale variabelen <code>eerste_kaart</code> en <code>tweede_kaart</code>.
+Als je die kaarten dan wil omdraaien, moet je in het document op zoek naar de (img-)elementen met dat <code>id</code>. Dat kan. 
+Maar was de grootste deugd van 'n programmeur niet <i>lui zijn</i>? Of toch het programma toelaten om lui (lees: effici&euml;nt) te zijn? Onthoud niet het <code>id</code>, maar het hele (img-)element.
+<br/>(Moraal van het verhaal: je had helemaal geen <code>id</code> nodig voor de afbeeldingen!)
+</pre>
+</li>
+<li>
+Bij memory is het de bedoeling dat je <i>twee</i> kaarten openlegt, en ze weer toelegt als ze niet matchen. Een kaart openleggen en gauw weer toeleggen is valsspelen. 
+Dat kon ik nochtans doen bij redelijk wat spellen!
+</li>
+<li>
+Wie ook aan het tweede deel (op 1/3e van de punten) kon beginnen, heeft dat over het algemeen goed gedaan. Een foutje dat opviel: als je de scores opnieuw opvraagt van de server, 
+moet je eerst de reeds getoonde tabel (of tekst) leegmaken, in plaats van de (opnieuw) opgehaalde scores er achteraan te plakken.
+</li>
+</ul>
+Veel succes met deel 2 van het vak: mobiele toepassingen.
