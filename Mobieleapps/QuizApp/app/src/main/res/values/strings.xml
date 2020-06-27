@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">QuizApp</string>
+    <string name="ok_btn">OK</string>
+    <string name="input_field">antwoord</string>
+    <string name="hint_btn">HINT</string>
+    <string name="questiondefault">What is the city of your university</string>
+    <string name="textual">HINT1</string>
+    <string name="visual">HINT2</string>
+</resources>

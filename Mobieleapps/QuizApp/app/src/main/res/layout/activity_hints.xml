@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="quizMaster"
+            type="com.example.quizapp.model.QuizMaster" />
+
+        <variable
+            name="handler"
+            type="com.example.quizapp.HintsActivity" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".HintsActivity">
+
+        <!-- Praktisch alle instellingen van de verschillenden componenten (layouts, buttons, views, containers,...)
+             kan je instellen in het Design-venster (derde icoontje rechtsboven deze tekst, als je het project
+             in Android Studio open hebt staan).
+             Merk op:
+             layout_width en layout_height voor de FrameLayout hieronder ingesteld op "0dp".
+             Schakel even over naar het Design-venster,
+             selecteer daar in het venster rechtsonder ("Component Tree") het item 'frameLayout',
+             kijk dan in het venster rechtsboven ("Attributes - Declared Attributes")
+             naar 'layout_width' en klik op het driehoekige pijltje naast de waarde (0dp).
+             Dan zie je dat daar
+                      0dp (match constraint)
+             staat. Dus als je in een ConstraintLayout werkt, zullen de directe kinderen dikwijls
+                      0dp
+             gebruiken als 'afmetingen'.-->
+        <FrameLayout
+            android:id="@+id/frameLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/divider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.78">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{quizMaster.currentQuestion.textHint}"
+                android:textSize="30sp"
+                android:visibility="@{handler.hintVisibility == handler.TEXT_HINT? View.VISIBLE : View.GONE}" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{handler.hintVisibility == handler.IMAGE_HINT ? View.VISIBLE : View.GONE}"
+                app:imageRemoteUri="@{quizMaster.currentQuestion.imageURIHint}" />
+            <!-- android:src="@drawable/a"
+                 stelt een lokale afbeelding "a.png" in, die in de map 'drawable' is opgeslagen -->
+
+        </FrameLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{handler.onShowTextHint}"
+            android:text="@string/textual"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{handler.onShowImageHint}"
+            android:text="@string/visual"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/button5" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="32dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintBottom_toTopOf="@+id/button5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
