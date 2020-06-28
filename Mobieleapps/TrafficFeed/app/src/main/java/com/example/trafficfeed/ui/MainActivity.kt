@@ -13,13 +13,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val vm: TrafficViewModel by viewModels()
+        val vm: MyViewModel by viewModels()
+
         val binding: ActivityMainBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         binding.viewmodel = vm
         binding.lifecycleOwner = this
 
-        vm.notificationCount.observe(this, Observer {  })
+        vm.notificationCount.observe(this, Observer {})
     }
 }

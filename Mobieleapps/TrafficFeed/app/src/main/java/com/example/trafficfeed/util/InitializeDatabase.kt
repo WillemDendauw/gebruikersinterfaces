@@ -13,9 +13,10 @@ class InitializeDatabase(val appContext: Context, workerParams: WorkerParameters
         val json:JSONObject = JsonUtils.loadJSONFromAsset(appContext, "verkeersmeldingen.json")
         val list: MutableList<TrafficNotification> = JsonUtils.parseJSON(json)
 
-        list.forEach { not ->
-            TrafficNotificationDatabase.getInstance(appContext).trafficNotificationDao().insertAll(not)
+        list.forEach{
+            not -> TrafficNotificationDatabase.getInstance(appContext).trafficDao().insertAll(not)
         }
+
         return Result.success()
     }
 }
