@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- merk op: hier heb je "viewmodel" nergens nodig, dus moet het ook niet als
+                  variabele gedeclareerd te worden. Enkel in fragment_detail.xml heb je het nodig.
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.example.trafficfeed.ui.MyViewModel" />
+    </data>
+    -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        tools:context=".view.ui.MainActivity">
+
+
+        <fragment
+            android:id="@+id/fragment"
+            android:name="com.example.trafficfeed.MainFragment"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <fragment
+            android:id="@+id/fragment2"
+            android:name="com.example.trafficfeed.DetailFragment"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2" />
+    </LinearLayout>
+</layout>

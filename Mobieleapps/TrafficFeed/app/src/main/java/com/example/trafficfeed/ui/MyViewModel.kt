@@ -9,6 +9,7 @@ import androidx.lifecycle.Transformations
 import com.example.trafficfeed.db.DummyTrafficNotification
 import com.example.trafficfeed.db.model.TrafficNotification
 import com.example.trafficfeed.db.model.TrafficNotificationRepository
+import kotlin.random.Random
 
 class MyViewModel(application: Application) : AndroidViewModel(application) {
     val tag = "MyViewModel"
@@ -50,18 +51,25 @@ class MyViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun previous() {
-        if(notificationCount.value ?: 0 > 0){
-            var lengte = notificationCount.value?:1
-            indexCurrentNotification--
-            if(indexCurrentNotification < 0){
-                indexCurrentNotification = lengte - 1 ?: 0
-            }
+        if (notificationCount.value ?: 0 > 0) {
+            if (indexCurrentNotification == 0)
+                indexCurrentNotification = (notificationCount.value ?: 1) - 1
+            else
+                indexCurrentNotification--
+
+            indexCurrentNotification %= notificationCount.value ?: 0
+            selectedNotif.value = notifications.value?.get(indexCurrentNotification)
             // opletten met negatieve getallen en modulo rekenen!
             // vermijd de bewerking a % b als a negatief is
             // (het hangt af van programmeertaal of je een negatief getal krijgt,
             // dan wel een postief. Wiskundigen en informatici zijn het hier niet eens
             // over de definite die gebruikt moet worden)
-            selectedNotif.value = notifications.value?.get(indexCurrentNotification)
         }
+    }
+
+    fun chooseRandom() {
+        var index = Random.nextInt(notificationCount.value?:0)
+        // currentNotification = index
+        selectedNotif.value = notifications.value?.get(index)
     }
 }

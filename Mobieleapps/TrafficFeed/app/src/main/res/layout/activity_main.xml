@@ -3,9 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- merk op: hier heb je "viewmodel" nergens nodig, dus moet het ook niet als
+    variabele gedeclareerd te worden; enkel in fragment_detail.xml heb je het nodig.
     <data>
         <variable name="viewmodel" type="com.example.trafficfeed.ui.MyViewModel"/>
     </data>
+    -->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,188 +16,26 @@
         android:orientation="vertical"
         tools:context=".view.ui.MainActivity">
 
-        <TextView
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:textAppearance="@android:style/TextAppearance.Large"
-            tools:text="Title placeholder" />
+            android:layout_height="match_parent">
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
+            <!-- een fragment met android:name gelijk aan "androidx.navigation.fragment.NavHostFragment"
+                 zal ervoor zorgen dat er navigatie IS, dat wil zeggen dat het bestaan van dit fragment
+                 ervoor zorgt dat de code "Navigation.findNavController(view)..." (in MainFragment.kt)
+                 überhaupt een NavController zal opleveren.
+                 Moest er geen dergelijk fragment staan, dan zal er geen NavController gevonden worden.
+                 Daarom ook dat er (voor aanroep van de code NavController)
+                 eerst getest zal worden of dit specifieke fragment
+                 (met id 'navhostfragment') wel degelijk bestaat. -->
 
-            <GridLayout
+            <fragment
+                android:id="@+id/navhostfragment"
+                android:name="androidx.navigation.fragment.NavHostFragment"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:columnCount="2"
-                android:padding="20dp">
-
-                <TextView
-                    android:layout_gravity="end"
-                    android:minHeight="25dp"
-                    android:paddingStart="0dp"
-                    android:paddingTop="5dp"
-                    android:paddingEnd="16dp"
-                    android:paddingBottom="5dp"
-                    android:text="@string/id"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_columnWeight="1"
-                    android:minHeight="25dp"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textAllCaps="false"
-                    android:text="@{viewmodel.selectedNotif.id}"/>
-
-                <TextView
-                    android:layout_gravity="end"
-                    android:minHeight="25dp"
-                    android:paddingStart="0dp"
-                    android:paddingTop="5dp"
-                    android:paddingEnd="16dp"
-                    android:paddingBottom="5dp"
-                    android:text="@string/source"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_columnWeight="1"
-                    android:minHeight="25dp"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textAllCaps="false"
-                    android:text="@{viewmodel.selectedNotif.source}"/>
-
-                <TextView
-                    android:layout_gravity="end"
-                    android:minHeight="25dp"
-                    android:paddingStart="0dp"
-                    android:paddingTop="5dp"
-                    android:paddingEnd="16dp"
-                    android:paddingBottom="5dp"
-                    android:text="@string/type"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_columnWeight="1"
-                    android:minHeight="25dp"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textAllCaps="false"
-                    android:text="@{viewmodel.selectedNotif.type}"/>
-
-                <TextView
-                    android:layout_gravity="end"
-                    android:minHeight="25dp"
-                    android:paddingStart="0dp"
-                    android:paddingTop="5dp"
-                    android:paddingEnd="16dp"
-                    android:paddingBottom="5dp"
-                    android:text="@string/transport"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_columnWeight="1"
-                    android:minHeight="25dp"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textAllCaps="false"
-                    android:text="@{viewmodel.selectedNotif.transport}"/>
-
-                <TextView
-                    android:layout_gravity="end"
-                    android:minHeight="25dp"
-                    android:paddingStart="0dp"
-                    android:paddingTop="5dp"
-                    android:paddingEnd="16dp"
-                    android:paddingBottom="5dp"
-                    android:text="@string/message"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_columnWeight="1"
-                    android:minHeight="25dp"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textAllCaps="false"
-                    android:text="@{viewmodel.selectedNotif.message}"/>
-
-                <TextView
-                    android:layout_gravity="end"
-                    android:minHeight="25dp"
-                    android:paddingStart="0dp"
-                    android:paddingTop="5dp"
-                    android:paddingEnd="16dp"
-                    android:paddingBottom="5dp"
-                    android:text="@string/longitude"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_columnWeight="1"
-                    android:minHeight="25dp"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textAllCaps="false"
-                    android:text="@{Double.toString(viewmodel.selectedNotif.longitude)}"/>
-
-                <TextView
-                    android:layout_gravity="end"
-                    android:minHeight="25dp"
-                    android:paddingStart="0dp"
-                    android:paddingTop="5dp"
-                    android:paddingEnd="16dp"
-                    android:paddingBottom="5dp"
-                    android:text="@string/latitude"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_columnWeight="1"
-                    android:minHeight="25dp"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textAllCaps="false"
-                    android:text="@{Double.toString(viewmodel.selectedNotif.latitude)}"/>
-
-                <TextView
-                    android:layout_gravity="end"
-                    android:minHeight="25dp"
-                    android:paddingStart="0dp"
-                    android:paddingTop="5dp"
-                    android:paddingEnd="16dp"
-                    android:paddingBottom="5dp"
-                    android:text="@string/timestamp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_columnWeight="1"
-                    android:minHeight="25dp"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:textAllCaps="false"
-                    android:text="@{viewmodel.selectedNotif.date}"/>
-            </GridLayout>
-        </ScrollView>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/previous"
-                android:onClick="@{()->viewmodel.previous()}"/>
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/next"
-                android:onClick="@{()->viewmodel.next()}"/>
-        </LinearLayout>
+                android:layout_height="match_parent"
+                app:defaultNavHost="true"
+                app:navGraph="@navigation/nav_graph" />
+        </FrameLayout>
     </LinearLayout>
 </layout>
